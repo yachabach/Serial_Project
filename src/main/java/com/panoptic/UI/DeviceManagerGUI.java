@@ -1,17 +1,15 @@
 package com.panoptic.UI;
 
 import javax.swing.*;
+import net.miginfocom.swing.MigLayout;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class DeviceManagerGUI extends JFrame {
+    public JFrame mainFrame;
     public JPanel mainPanel;
-    private JTextField tfieldUserMsg;
-    private JLabel lblUserMsg;
-    private JButton btnSendMsg;
-    private JLabel lblOutputMsg;
-    private JPanel pnlComponents;
 
     public DeviceManagerGUI(String title) {
 
@@ -19,30 +17,27 @@ public class DeviceManagerGUI extends JFrame {
         //which is the base object for out DeviceManagerGUI
         super(title);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //mainFrame = new JFrame();
+        //Set size and location for entire app
+        setLocation(200,100);
+        setSize(600,600);
+        //setTitle(title);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new MigLayout());
+
 
         /*Create and set up the content pane.
         This is where we set the content for our form.  All of our components
         will go somewhere on the mainPanel.  This is how we make a connection
         with the components we build with the builder
          */
-        this.setContentPane(mainPanel);
-        this.pack();
-        btnSendMsg.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Grab text from tfieldUserMsg
-                //put in label
-                lblOutputMsg.setText(tfieldUserMsg.getText());
-            }
-        });
+        setContentPane(mainPanel);
+//
+        mainPanel.add(new TabbedPaneGUI());
+        //pack();
 
-        tfieldUserMsg.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lblOutputMsg.setText(tfieldUserMsg.getText());
-            }
-        });
     }
 
 
